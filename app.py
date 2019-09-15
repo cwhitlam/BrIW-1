@@ -31,7 +31,8 @@ if menu_input_raw.isnumeric():
         ui.print_drinks_menu()
     elif menu_selection == "Exit Application":
         exit()
-
+    else:
+        pass
 else:
     #TODO easteregg
     pass
