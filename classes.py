@@ -31,7 +31,7 @@ class Person:
         self._fav_drink = fav_drink
 
     def get_id(self):
-        return self.__subclasshook__identifier
+        return self._identifier
 
     def get_forename(self):
         return self._forename
@@ -46,7 +46,10 @@ class Person:
         self._surname = name
    
     def get_fav_drink(self):
-        return self._favourite_drink
+        if self._fav_drink is None:
+            return Drink(-1, "No Preference")
+        else:
+            return self._fav_drink
 
     def set_fav_drink(self, drink: Drink):
         self._fav_drink = drink

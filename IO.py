@@ -1,9 +1,15 @@
+import pickle
+import os
 
-def unpickle(path):
-    if os.path.exists(path):
-        with open(path, "rb") as file:
-            return pickle.load(file)
+class Pickle_IO:
+    def unpickle(self, file_name):
+        path = f"./data/{file_name}.p"
+        if os.path.exists(path):
+            with open(path, "rb") as file:
+                return pickle.load(file)
 
-def pickle_load(path, obj):
-    with open(path, "wb") as file:
-        pickle.dump(obj, file)
+
+    def picklize(self, file_name, obj):
+        path = f"./data/{file_name}.p"
+        with open(path, "wb") as file:
+            pickle.dump(obj, file)

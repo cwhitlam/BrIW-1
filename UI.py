@@ -2,30 +2,16 @@ import os
 
 class UI:
     header_width = 72
-    main_menu_options = {
-        1: "People",
-        2: "Drinks",
-        3: "Exit Application"
-    }
-    people_menu_options = {
-        1: "List People",
-        2: "Add People",
-        3: "Remove People",
-        4: "Change Drink Preference"
-    }
-    drink_menu_options = {
-        1: "List Drinks",
-        2: "Add Drnks",
-        3: "Remove Drinks"
-    }
-
-    def __init__(self):
-        pass
-
+    
     def print_header(self):
         print(f"+ {'=' * (self.header_width - 4)} +")
 
-    def print_main_menu(self):
+
+    def clear(self):
+        os.system("cls" if os.name == "nt" else "clear")
+
+
+    def print_main_menu_title(self):
         main_menu_text = """+ ==================================================================== +
 |  _      __        __                             __                  |
 | | | /| / / ___   / / ____ ___   __ _  ___       / /_ ___             |
@@ -39,32 +25,44 @@ class UI:
 |            /_____/  /_/     /___/   |__/|__/   (_)                   |
 |                                                                      |
 + ==================================================================== +"""
-        for key, val in self.main_menu_options.items():
-            main_menu_row = f"\n| [{key}] {val}"
-            main_menu_row += f"{' ' * (self.header_width - len(main_menu_row))}|"
-            main_menu_text += main_menu_row
         print(main_menu_text)
+
+
+    def print_people_menu_title(self, clear=False):
+        if clear:
+            self.clear()
+
+        people_ascii_title = """|    ___    ____  ____    ___    __    ____
+|   / _ \  / __/ / __ \  / _ \  / /   / __/
+|  / ___/ / _/  / /_/ / / ___/ / /__ / _/  
+| /_/    /___/  \____/ /_/    /____//___/ 
+|"""
+        self.print_header()
+        #loops through each line of ascii title and works out blank space
+        #then applies border end using |
+        for line in iter(people_ascii_title.splitlines()):
+            print(line + f"{' ' * (self.header_width - len(line)-1)}|")
         self.print_header()
 
-    def print_people_menu(self):
-        people_menu_text = """"     ___  ____    ___    __    ____
-   / _ \  / __/ / __ \  / _ \  / /   / __/
-  / ___/ / _/  / /_/ / / ___/ / /__ / _/  
- /_/    /___/  \____/ /_/    /____//___/  
-                                         
 
+    def print_drinks_menu_title(self, clear=False):
+        if clear:
+            self.clear()
 
-        """
-        print(people_menu_text)
+        drink_ascii_title = """|     ____     ____     ____    _   __    __ __   _____
+|    / __ \   / __ \   /  _/   / | / /   / //_/  / ___/
+|   / / / /  / /_/ /   / /    /  |/ /   / ,<     \__ \ 
+|  / /_/ /  / _, _/  _/ /    / /|  /   / /| |   ___/ / 
+| /_____/  /_/ |_|  /___/   /_/ |_/   /_/ |_|  /____/  
+|"""
 
-
-    def print_drinks_menu(self):
-        pass
+        self.print_header()
+        #loops through each line of ascii title and works out blank space
+        #then applies border end using |
+        for line in iter(drink_ascii_title.splitlines()):
+            print(line + f"{' ' * (self.header_width - len(line)-1) }|")
+        self.print_header()
 
 
     def press_enter_to_continue(self):
-        input("Press Enter to return to menu ")
-
-
-    def clear(self):
-        os.system("cls" if os.name == "nt" else "clear")
+        input("Press Enter to continue ")
