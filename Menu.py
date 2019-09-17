@@ -2,8 +2,6 @@ from UI import UI
 from IO import Pickle_IO
 from classes import Drink, Person, Round
 
-#test brancing
-
 class Menu:
     def __init__(self):
         self._ui = UI()
@@ -70,8 +68,7 @@ class Menu:
                 elif menu_selection == "Add People":
                     self.add_people()
                 elif menu_selection == "Remove People":
-                    #TODO
-                    pass
+                    self.remove_people()
                 elif menu_selection == "Change Drink Preference":
                     #TODO
                     pass
@@ -107,7 +104,7 @@ class Menu:
                 break
 
 
-    def list_people(self):
+    def list_people(self, enter_to_continue=True):
         people = self._io.unpickle("people")
         
         header_width = self._ui.header_width #taking a local copy in function as to not affect the state of the wider application
@@ -136,7 +133,9 @@ class Menu:
             print(person_row)
 
         self._ui.print_header()
-        self._ui.press_enter_to_continue()
+
+        if enter_to_continue:
+            self._ui.press_enter_to_continue()
 
     def add_people(self):
         while True:
@@ -176,4 +175,37 @@ class Menu:
 
             if input("Would you like to add someone else?(Y/N): ").upper() == "N":
                 break
+    
+    def remove_people(self):
+        while True:
+            self.list_people(False)
+            print("From the above list select a person to delete by their ID")
+
+            try:
+                person_to_remove_id = int(input("ID: "))
+                people = self._io.unpickle("people")
+                person_to_remove = people[person_to_remove_id]
+                
+                self._ui.print_people_menu_title(True)
+
+                print(f"First Name: {person_to_remove.forename}")
+                print(f"Last Name: {person_to_remove.surname}")
+                print(f"Favourite Drink: {person_to_remove.fav_drink.name}")
+                print("You have selected to remove the above person")
+
+                if input("Are you sure you want to remove them? (Y/N)").upper() == "Y":
+                    if person_to_remove_id in people:
+                        del people[person_to_remove_id]
+                        self._io.picklize("people", people)
+
+                        self._ui.print_people_menu_title(True)
+                        print(f"{person_to_remove.full_name} has been removed from the list of people")
+                
+
+                if input("Would you like to remove someone else? (Y/N)").upper() == "N":
+                    break
+            except ValueError:
+                if input("Non valid input selected. Would you like to try again? (Y/N): ").upper() != "Y":
+                    break
+            
 
