@@ -1,3 +1,5 @@
+import json
+
 class Drink:
     def __init__(self, id, name, instructions=None):
         self._identifier = id
@@ -18,6 +20,16 @@ class Drink:
 
     def set_instructions(self, instructions):
         self._instructions = instructions
+
+    def build_json(self):
+        json_out = {
+            "identifier": self.identifier,
+            "name": self.name,
+            "instructions": self.instructions
+        }
+
+        return json_out
+
 
     identifier = property(get_id)
     name = property(get_name, set_name)
@@ -56,7 +68,17 @@ class Person:
     
     def get_fullname(self):
         return f"{self.forename} {self.surname}"
-    
+
+    def build_json(self):
+        json_out = {
+            "identifier": self.identifier, 
+            "forename": self.forename,
+            "surname": self.surname,
+            "fav_drink": self.fav_drink.build_json()
+        }
+        
+        return json_out        
+
     identifier = property(get_id)
     forename = property(get_forename, set_forename)
     surname = property(get_surname, set_surname)
@@ -65,8 +87,9 @@ class Person:
 
 class Round:
     def __init__(self, round_time=""):
-        _orders = {}
-        while not round_time.isnumeric():
+        self._orders = {}
+        
+        while isinstance(round_time, str) and not round_time.isnumeric():
             round_time = input("How many minutes would you like to allow submitions for? (whole numbers): ")
         self.round_time = round_time
         print(f"round started. TIME: {round_time} minute(s)") 
