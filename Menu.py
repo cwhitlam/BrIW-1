@@ -1,5 +1,6 @@
 from UI import UI
 from IO import Pickle_IO
+from devito import devito_time
 from classes import Drink, Person, Round
 
 class Menu:
@@ -9,7 +10,8 @@ class Menu:
         self._main_menu_options = {
             1: "People",
             2: "Drinks",
-            3: "Exit Application"
+            3: "Exit Application",
+            4: "Danny"
         }
         self._people_menu_options = {
             1: "List People",
@@ -47,6 +49,9 @@ class Menu:
                self.people_menu()
             elif menu_selection == "Drinks":
                 self.drink_menu()
+            elif menu_selection == "Danny":
+                devito_time()
+                self._ui.press_enter_to_continue()
             else:
                 self._ui.clear()
                 print("Thank You for using BrIW™. See you again soon! ^_^")
