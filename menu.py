@@ -14,6 +14,7 @@ class Menu:
     #TODO GENERATE MENU AND GET INPUT FOR FACTORY
 
     def build_menu(self):
+        clear()
         print(self.generate_ascii_art(self.header_text))
             
         for key, val in self.options.items():
@@ -22,12 +23,15 @@ class Menu:
         user_selection = self.options[get_option()]
 
         factory = MenuFactory()
-        factory.action(header_text, user_selection)
+        factory.action(self.header_text, user_selection)
+
+class SubMenu(Menu):
+    pass
 
 class MenuFactory:
-    def action(self, menu, option):
+    def action(self, item_type, option):
         action = self._get_action(option)
-        return action(menu, option)
+        return action(item_type, option)
 
     def _get_action(self, option):
         if option == "Add":
@@ -43,17 +47,17 @@ class MenuFactory:
         else:
             raise ValueError("Menu Option Not Recognised")
 
-    def _create_menu(self, menu, option): 
-        print("menu created")
+    def _create_menu(self, item_type, option): 
+        sub_menu =
 
-    def _add_item(self, menu, option):
+    def _add_item(self, item_type, option):
         print("item added")
 
-    def _remove_item(self, menu, option):
+    def _remove_item(self, item_type, option):
         print("item removed")
 
-    def _change_preference(self, menu, option):
+    def _change_preference(self, item_type, option):
         print("preference changed")
 
-    def _exit(self, menu, option):
+    def _exit(self, item_type, option):
         print("menu exited")
