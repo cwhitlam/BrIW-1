@@ -1,15 +1,14 @@
 from pyfiglet import Figlet
 from prettytable import PrettyTable
 from functions import *
+from texts import *
+from data import *
+from ui import *
 
 class Menu:
     def __init__(self, menu_options, header_text):
         self.options = menu_options
         self.header_text = header_text
-
-    def generate_ascii_art(self, text):
-        figlet = Figlet(font="slant")
-        return figlet.renderText(text)
 
     #TODO GENERATE MENU AND GET INPUT FOR FACTORY
 
@@ -29,7 +28,7 @@ class SubMenu(Menu):
     pass
 
 class MenuFactory:
-    def action(self, item_type, option):
+    def perform_user_action(self, item_type, option):
         action = self._get_action(option)
         return action(item_type, option)
 
@@ -48,15 +47,17 @@ class MenuFactory:
             raise ValueError("Menu Option Not Recognised")
 
     def _create_menu(self, item_type, option): 
-        sub_menu =
+        sub_menu = SubMenu(texts.sub_menu_options, item_type)
+        return sub_menu()
 
-    def _add_item(self, item_type, option):
-        print("item added")
+    def _add_item_to_file(self, item_type, option):
+        
+        
 
-    def _remove_item(self, item_type, option):
+    def _remove_item_to_file(self, item_type, option):
         print("item removed")
 
-    def _change_preference(self, item_type, option):
+    def _change_drink_preference(self, item_type, option):
         print("preference changed")
 
     def _exit(self, item_type, option):
