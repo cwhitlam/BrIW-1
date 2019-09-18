@@ -1,13 +1,11 @@
-from UI import UI
+from UI import *
 from Menu import Menu
 
-
-ui = UI()
 menu = Menu()
 
 
 #PROGRAM FLOW
 while True:
-    ui.clear()
+    clear()
     #main menu functionality
     menu.main_menu()
