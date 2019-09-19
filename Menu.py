@@ -2,6 +2,7 @@ from UI import *
 from data_io import *
 from classes import Drink, Person, Round
 import user_input
+import devito as danny
 
 class Menu:
     def __init__(self):
@@ -48,8 +49,8 @@ class Menu:
             elif menu_selection == "Drinks":
                 self.drink_menu()
             elif menu_selection == "Danny":
-                devito_time()
-                self._ui.press_enter_to_continue()
+                danny.devito_time()
+                press_enter_to_continue()
             else:
                 clear()
                 print("Thank You for using BrIW™. See you again soon! ^_^")
