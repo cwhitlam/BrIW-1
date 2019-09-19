@@ -8,7 +8,8 @@ class Menu:
         self._main_menu_options = {
             1: "People",
             2: "Drinks",
-            3: "Exit Application"
+            3: "Exit Application",
+            4: "Danny"
         }
         self._people_menu_options = {
             1: "List People",
@@ -43,9 +44,12 @@ class Menu:
             menu_selection = self.print_menu_options(self._main_menu_options)
             
             if menu_selection == "People":
-               self.people_menu()
+                self.people_menu()
             elif menu_selection == "Drinks":
                 self.drink_menu()
+            elif menu_selection == "Danny":
+                devito_time()
+                self._ui.press_enter_to_continue()
             else:
                 clear()
                 print("Thank You for using BrIW™. See you again soon! ^_^")
@@ -63,7 +67,7 @@ class Menu:
                 clear()
 
                 if menu_selection == "List People":
-                    self.list_people()
+                    list_people()
                     press_enter_to_continue()
                 elif menu_selection == "Add People":
                     add_people()
