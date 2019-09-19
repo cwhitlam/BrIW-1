@@ -1,9 +1,10 @@
 import os
 
-header_width = 72
+def get_header():
+    return 72
 
 def print_header():
-    print(f"+ {'=' * (header_width - 4)} +")
+    print(f"+ {'=' * (get_header() - 4)} +")
 
 
 def clear():
@@ -40,12 +41,12 @@ def print_people_menu_title(clear_term=False):
     #loops through each line of ascii title and works out blank space
     #then applies border end using |
     for line in iter(people_ascii_title.splitlines()):
-        print(line + f"{' ' * (header_width - len(line)-1)}|")
+        print(line + f"{' ' * (get_header() - len(line)-1)}|")
     print_header()
 
 
-def print_drinks_menu_title(clear=False):
-    if clear:
+def print_drinks_menu_title(clear_term=False):
+    if clear_term:
         clear()
 
     drink_ascii_title = """|     ____     ____     ____    _   __    __ __   _____
@@ -59,7 +60,7 @@ def print_drinks_menu_title(clear=False):
     #loops through each line of ascii title and works out blank space
     #then applies border end using |
     for line in iter(drink_ascii_title.splitlines()):
-        print(line + f"{' ' * (header_width - len(line)-1) }|")
+        print(line + f"{' ' * (get_header() - len(line)-1) }|")
     print_header()
 
 
